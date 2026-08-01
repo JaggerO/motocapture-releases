@@ -26,6 +26,7 @@
 </nav>
 
 <header class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
   <div class="wrap">
     <span class="eyebrow">Free · Local-first · No account</span>
     <h1>Know your car's history.</h1>
@@ -63,7 +64,7 @@
     </p>
 
     <div class="compare">
-      <div class="compare-col">
+      <div class="compare-col reveal">
         <h3>Before</h3>
         <div class="scatter-notes">
           <div class="scatter-note">oil change... march? or april</div>
@@ -72,7 +73,7 @@
           <div class="scatter-note">"I think it's around 150k miles"</div>
         </div>
       </div>
-      <div class="compare-col">
+      <div class="compare-col reveal">
         <h3>With MotoCapture</h3>
         <div class="mock-row">
           <div>
@@ -104,7 +105,7 @@
     <h2>What it actually does</h2>
     <p class="section-lede">Three things, done well, instead of ten things done halfway.</p>
 
-    <div class="feature-row">
+    <div class="feature-row reveal">
       <h3>Maintenance plans</h3>
       <p>
         Set up recurring items by mileage, by time, or by whichever comes first. Start from
@@ -113,7 +114,7 @@
       </p>
     </div>
 
-    <div class="feature-row">
+    <div class="feature-row reveal">
       <h3>Service history &amp; reports</h3>
       <p>
         Log completed work and one-off repairs, attach receipts and photos, and see cost
@@ -122,7 +123,7 @@
       </p>
     </div>
 
-    <div class="feature-row">
+    <div class="feature-row reveal">
       <h3>Phone capture companion</h3>
       <p>
         Scan a QR code to pair your phone over your own Wi-Fi - no account, nothing sent
@@ -142,7 +143,14 @@
       start yourself.
     </p>
 
-    <div class="feature-row">
+    <div class="stats-strip">
+      <span class="stat"><strong>$0</strong>/mo infrastructure</span>
+      <span class="stat"><strong>0</strong> accounts required</span>
+      <span class="stat"><strong>100%</strong> local storage</span>
+      <span class="stat"><strong>1</strong> opt-in exception (crash reports)</span>
+    </div>
+
+    <div class="feature-row reveal">
       <h3>Nothing leaves your machine</h3>
       <p>
         Vehicles, service records, and receipts live in a local SQLite database and local
@@ -150,7 +158,7 @@
       </p>
     </div>
 
-    <div class="feature-row">
+    <div class="feature-row reveal">
       <h3>The phone companion stays on your Wi-Fi</h3>
       <p>
         Pairing your phone opens a temporary connection over your own home network only.
@@ -158,7 +166,7 @@
       </p>
     </div>
 
-    <div class="feature-row">
+    <div class="feature-row reveal">
       <h3>Crash reports are opt-in</h3>
       <p>
         The one exception: an off-by-default setting to send crash diagnostics if
@@ -177,15 +185,15 @@
     <p class="section-lede">Free to download. No account, no sign-up, no trial clock.</p>
 
     <div class="download-grid" id="download-grid">
-      <a class="download-card" data-os="mac" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+      <a class="download-card reveal" data-os="mac" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
         <span class="os">macOS</span>
         <span class="fmt">Apple Silicon &amp; Intel · .dmg</span>
       </a>
-      <a class="download-card" data-os="windows" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+      <a class="download-card reveal" data-os="windows" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
         <span class="os">Windows</span>
         <span class="fmt">x64 &amp; ARM64 · .exe (NSIS)</span>
       </a>
-      <a class="download-card" data-os="linux" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+      <a class="download-card reveal" data-os="linux" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
         <span class="os">Linux</span>
         <span class="fmt">.AppImage</span>
       </a>
@@ -250,6 +258,29 @@
     }
 
     setInterval(increment, 4000);
+  })();
+
+  // Reveal cards/rows as they scroll into view. Static (no transition)
+  // for reduced-motion users, matching the odometer script's approach.
+  (function revealOnScroll() {
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      targets.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    targets.forEach(function (el) { observer.observe(el); });
   })();
 </script>
 
