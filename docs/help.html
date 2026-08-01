@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Help &amp; Privacy - MotoCapture</title>
+<meta name="description" content="How MotoCapture works, and what it does and doesn't collect." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="#c98a3e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 16.5 5.4 11.6A2.5 2.5 0 0 1 7.8 9.8h8.4a2.5 2.5 0 0 1 2.4 1.8l1.4 4.9" />
+        <path d="M4 16.5h16" />
+        <circle cx="7" cy="18.5" r="1.7" />
+        <circle cx="17" cy="18.5" r="1.7" />
+      </svg>
+      MotoCapture
+    </a>
+    <div class="nav-links">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#privacy">Privacy</a>
+      <a href="help.html">Help</a>
+      <a href="index.html#download" class="nav-cta">Download</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <h1 class="page-title">Help &amp; Privacy</h1>
+  <p class="page-lede">Quick answers, and exactly what MotoCapture does and doesn't collect.</p>
+
+  <div class="help-toggle">
+    <a href="#faq" id="tab-faq" class="active">FAQ</a>
+    <a href="#privacy" id="tab-privacy">Privacy &amp; Terms</a>
+  </div>
+
+  <section id="faq-section">
+    <details class="topic" open>
+      <summary>How does mileage get updated, and which way should I use?</summary>
+      <p>
+        Mileage-based maintenance plans only know something is due soon or overdue by
+        comparing the plan's next-due mileage against the vehicle's current mileage on
+        file. There are two habits worth keeping.
+      </p>
+      <ol>
+        <li>Update the odometer reading directly every so often, even between services, so "Due soon" / "Overdue" badges stay accurate.</li>
+        <li>When you complete a service, log it instead - this records the work, advances the linked plan's next-due date automatically, and updates the vehicle's mileage in one step.</li>
+        <li>An odometer photo reviewed from the phone Capture Inbox behaves like the direct update: it sets the mileage with no history entry.</li>
+      </ol>
+    </details>
+
+    <details class="topic">
+      <summary>How do I add a vehicle?</summary>
+      <p>
+        Open the Vehicles tab and click "+ Add vehicle." Make, model, year, and current
+        mileage are required - VIN, purchase date, and notes are optional and can be added
+        later.
+      </p>
+    </details>
+
+    <details class="topic">
+      <summary>How do I record a completed service or a one-off repair?</summary>
+      <p>
+        Open a vehicle, then click "+ Log service." Pick a maintenance plan to log a
+        completed recurring service, or leave it as a one-off repair for something like an
+        alternator replacement that isn't on a schedule. If the service completes a plan,
+        its next-due mileage and date update automatically.
+      </p>
+    </details>
+
+    <details class="topic">
+      <summary>How do I set up maintenance intervals?</summary>
+      <p>
+        From a vehicle's page, click "+ Add plan." Start from a template or build one from
+        scratch, then choose whether it repeats by mileage, by time, or by whichever comes
+        first. Template intervals are generic starting points, not manufacturer data for
+        your specific vehicle - always check your owner's manual.
+      </p>
+    </details>
+
+    <details class="topic">
+      <summary>How do I back up and restore my data?</summary>
+      <p>
+        "Export all data (JSON)" saves every vehicle, plan, service record, and attachment
+        reference. "Export portable archive (.cartrack)" does the same and also bundles the
+        actual receipt and photo files, so it's the more complete option when moving to a
+        new computer. Both restore options replace everything currently in the app - there's
+        no merge, and you'll be asked to confirm first.
+      </p>
+    </details>
+
+    <details class="topic">
+      <summary>How do I use the phone capture companion?</summary>
+      <p>
+        On the Dashboard, click "Connect Phone" and scan the QR code with your phone's
+        camera while it's on the same Wi-Fi network as your computer. That opens a simple
+        page with four capture buttons: receipt/invoice, odometer, document, and other.
+        The phone only captures and sends files - everything lands in the Inbox tab on the
+        desktop for review.
+      </p>
+    </details>
+
+    <details class="topic">
+      <summary>Is it safe to use the phone capture companion?</summary>
+      <p>
+        Yes, as long as you only use it on your own home Wi-Fi. The connection is direct
+        between your two devices over your local network - nothing is sent over the
+        internet. It isn't hardened the way a banking app would be, so avoid public Wi-Fi,
+        and it disappears entirely as soon as you stop the phone server or close the app.
+      </p>
+    </details>
+
+    <details class="topic">
+      <summary>How do I export a vehicle's service history?</summary>
+      <p>
+        Open a vehicle. "Export CSV" saves that vehicle's service records as a
+        spreadsheet-friendly file. "Export PDF report" generates a formatted history report
+        with maintenance plans, a chronological timeline, cost summary, and attachment
+        references - useful for documenting or selling the vehicle.
+      </p>
+    </details>
+
+    <details class="topic">
+      <summary>What is the Maintenance Checklist?</summary>
+      <p>
+        It compares your plans and service records against common maintenance categories
+        (oil, brakes, tires, and so on) and shows each as Tracked, Logged only, or Not on
+        file. It's meant to surface gaps, not to tell you what your specific vehicle needs.
+      </p>
+    </details>
+  </section>
+
+  <section id="privacy-section" style="display:none;">
+    <div class="legal-section">
+      <h3>What MotoCapture collects</h3>
+      <p>
+        Nothing, by default. There's no account, no analytics, and no telemetry. Every
+        vehicle, maintenance plan, service record, receipt, and other piece of information
+        you enter is stored in a local SQLite database and local files on your own device.
+        Nothing is transmitted anywhere unless you explicitly export, back up, sync, share,
+        or submit it yourself.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h3>Phone companion</h3>
+      <p>
+        "Connect Phone" starts a temporary local HTTP server on your own Wi-Fi network.
+        Your phone talks directly to your desktop over your local network only - nothing
+        goes over the internet, and the server stops the moment you disconnect or close
+        the app.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h3>The one exception: opt-in crash reports</h3>
+      <p>
+        Automatic crash reporting is off by default (Settings → "Automatically send crash
+        reports"). If enabled, an unhandled crash sends a report with the app version, OS,
+        crash details, and recent diagnostic log entries. This is the only automatic
+        background network activity in MotoCapture, and only happens after you turn it on.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h3>Feedback and bug reports</h3>
+      <p>
+        Submitting "Report a problem / send feedback" sends your message and, if you
+        choose, technical details like app version, OS, and recent diagnostic entries,
+        through a small relay that files them as an issue in a private tracker. The app
+        never holds any tracker credentials. If the relay is unreachable, your report is
+        saved to a local file instead of being lost.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h3>Deleting your data</h3>
+      <p>
+        MotoCapture is local-first, so you're always in control. Delete records from
+        within the app at any time, and make a backup first if you plan to uninstall.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h3>Maintenance interval disclaimer</h3>
+      <p>
+        Templates give a common starting point, not a manufacturer recommendation for your
+        vehicle. Always verify intervals against your owner's manual or a trusted service
+        source before relying on them. Nothing in MotoCapture constitutes professional
+        automotive advice, and the app is provided as is - the developer isn't responsible
+        for loss, damage, cost, or vehicle issues arising from its use.
+      </p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> MotoCapture. Local-first, always.</span>
+    <span><a href="index.html">Back to home</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var tabFaq = document.getElementById('tab-faq');
+  var tabPrivacy = document.getElementById('tab-privacy');
+  var faqSection = document.getElementById('faq-section');
+  var privacySection = document.getElementById('privacy-section');
+
+  function showFaq() {
+    faqSection.style.display = '';
+    privacySection.style.display = 'none';
+    tabFaq.classList.add('active');
+    tabPrivacy.classList.remove('active');
+  }
+
+  function showPrivacy() {
+    faqSection.style.display = 'none';
+    privacySection.style.display = '';
+    tabPrivacy.classList.add('active');
+    tabFaq.classList.remove('active');
+  }
+
+  tabFaq.addEventListener('click', function (e) { e.preventDefault(); showFaq(); });
+  tabPrivacy.addEventListener('click', function (e) { e.preventDefault(); showPrivacy(); });
+
+  if (window.location.hash === '#privacy') showPrivacy();
+</script>
+
+</body>
+</html>
