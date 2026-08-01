@@ -261,8 +261,7 @@
     setInterval(increment, 4000);
   })();
 
-  // Reveal cards/rows as they scroll into view. Static (no transition)
-  // for reduced-motion users, matching the odometer script's approach.
+  // Reveal cards/rows as they scroll into view.
   (function revealOnScroll() {
     var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
