@@ -26,7 +26,13 @@ Grab the file for your platform from the [latest release](https://github.com/Jag
 
 Each release page also lists a few files that **aren't for direct download** - `latest.json`, any `.sig` files, `*.app.tar.gz`, and the "Source code" archives. Those are used by the app's auto-updater and build process, not something you need to open yourself.
 
-**A note on install warnings:** builds aren't code-signed yet, so macOS Gatekeeper and Windows SmartScreen will both flag the app as being from an unidentified/unknown publisher on first launch. That's expected for now - right-click → Open on macOS, or "More info → Run anyway" on Windows SmartScreen, gets you past it. Code signing is on the roadmap.
+> [!WARNING]
+> Builds aren't code-signed yet, so macOS Gatekeeper and Windows SmartScreen will both flag the app as being from an unidentified/unknown publisher on first launch. That's expected, not a sign anything's wrong.
+>
+> - **macOS:** right-click the app → **Open** → confirm in the dialog that appears.
+> - **Windows:** click **"More info"** on the SmartScreen prompt → **"Run anyway"**.
+>
+> Code signing is on the roadmap.
 
 On Linux, make the AppImage executable before running it:
 ```bash
