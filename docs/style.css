@@ -134,10 +134,7 @@ a:hover { color: var(--accent-hover); }
   .site-grid { animation: none; }
 }
 
-/* --- Hero ---
-   No opaque background of its own anymore (previously `var(--bg)` here
-   blocked .site-grid) - just the warm radial glow layered on top of
-   whatever's behind it. */
+/* --- Hero --- */
 
 .hero {
   padding: 4.5rem 0 3.5rem;
