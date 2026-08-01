@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MotoCapture - Know your car's history</title>
+<meta name="description" content="A local-first, free, privacy-focused vehicle maintenance and ownership history app. Your data stays on your device." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2314161a'/%3E%3Cpath d='M4 16.5 5.4 11.6A2.5 2.5 0 0 1 7.8 9.8h8.4a2.5 2.5 0 0 1 2.4 1.8l1.4 4.9' stroke='%23c98a3e' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M4 16.5h16' stroke='%23c98a3e' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='7' cy='18.5' r='1.6' fill='%23c98a3e'/%3E%3Ccircle cx='17' cy='18.5' r='1.6' fill='%23c98a3e'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="#c98a3e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 16.5 5.4 11.6A2.5 2.5 0 0 1 7.8 9.8h8.4a2.5 2.5 0 0 1 2.4 1.8l1.4 4.9" />
+        <path d="M4 16.5h16" />
+        <circle cx="7" cy="18.5" r="1.7" />
+        <circle cx="17" cy="18.5" r="1.7" />
+      </svg>
+      MotoCapture
+    </a>
+    <div class="nav-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#privacy">Privacy</a>
+      <a href="help.html">Help</a>
+      <a href="#download" class="nav-cta">Download</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Free · Local-first · No account</span>
+    <h1>Know your car's history.</h1>
+    <p class="lede">
+      MotoCapture is a desktop app that replaces the notes, spreadsheets, and glovebox
+      receipts you've been using to track maintenance. Every vehicle, every service,
+      every receipt - organized, searchable, and stored only on your own computer.
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#download">Download MotoCapture</a>
+      <a class="btn btn-secondary" href="#how-it-works">See how it works</a>
+    </div>
+
+    <div>
+      <div class="odometer" id="odometer" aria-hidden="true">
+        <div class="odometer-digit"><span data-d>1</span></div>
+        <div class="odometer-digit"><span data-d>5</span></div>
+        <div class="odometer-digit"><span data-d>4</span></div>
+        <div class="odometer-digit"><span data-d>3</span></div>
+        <div class="odometer-digit"><span data-d>0</span></div>
+        <div class="odometer-digit"><span data-d>2</span></div>
+      </div>
+      <div class="odometer-caption">miles, and every one of them accounted for</div>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="how-it-works">
+  <div class="wrap">
+    <h2>Built for people who actually track this stuff</h2>
+    <p class="section-lede">
+      Not a spreadsheet. Not a folder of PDFs named "receipt (3) final.pdf". One record per
+      vehicle that holds all of it.
+    </p>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3>Before</h3>
+        <div class="scatter-notes">
+          <div class="scatter-note">oil change... march? or april</div>
+          <div class="scatter-note">glovebox: 4 crumpled receipts</div>
+          <div class="scatter-note">brake-fluid-FINAL-v2.xlsx</div>
+          <div class="scatter-note">"I think it's around 150k miles"</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <h3>With MotoCapture</h3>
+        <div class="mock-row">
+          <div>
+            <span class="mname">2008 Mercedes-Benz C300</span>
+            <span class="mmeta">153,420 mi · VIN on file</span>
+          </div>
+          <span class="mock-badge">OK</span>
+        </div>
+        <div class="mock-row">
+          <div>
+            <span class="mname">Engine oil and filter</span>
+            <span class="mmeta">Next due · 160,000 mi</span>
+          </div>
+          <span class="mock-badge">Tracked</span>
+        </div>
+        <div class="mock-row">
+          <div>
+            <span class="mname">Front brake pads</span>
+            <span class="mmeta">$210.00 · Joe's Garage · 1 attachment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <h2>What it actually does</h2>
+    <p class="section-lede">Three things, done well, instead of ten things done halfway.</p>
+
+    <div class="feature-row">
+      <h3>Maintenance plans</h3>
+      <p>
+        Set up recurring items by mileage, by time, or by whichever comes first. Start from
+        a common-maintenance template or build your own - every interval stays editable,
+        because a generic template is a starting point, not a promise about your specific car.
+      </p>
+    </div>
+
+    <div class="feature-row">
+      <h3>Service history &amp; reports</h3>
+      <p>
+        Log completed work and one-off repairs, attach receipts and photos, and see cost
+        summaries by category. Export a polished PDF history report, a CSV, or a full JSON
+        backup whenever you want - your data, in formats you can actually use elsewhere.
+      </p>
+    </div>
+
+    <div class="feature-row">
+      <h3>Phone capture companion</h3>
+      <p>
+        Scan a QR code to pair your phone over your own Wi-Fi - no account, nothing sent
+        over the internet. Snap a photo of a receipt or the odometer, and it lands in a
+        Capture Inbox on the desktop app for you to review and file.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="privacy">
+  <div class="wrap">
+    <h2>Your data stays on your device</h2>
+    <p class="section-lede">
+      No account, no cloud sync, no telemetry. MotoCapture runs entirely on your computer,
+      stores everything in a local database, and the only network activity is one you
+      start yourself.
+    </p>
+
+    <div class="feature-row">
+      <h3>Nothing leaves your machine</h3>
+      <p>
+        Vehicles, service records, and receipts live in a local SQLite database and local
+        files. Nothing is transmitted unless you export, back up, or share it yourself.
+      </p>
+    </div>
+
+    <div class="feature-row">
+      <h3>The phone companion stays on your Wi-Fi</h3>
+      <p>
+        Pairing your phone opens a temporary connection over your own home network only.
+        It's not built for public Wi-Fi, and it disappears the moment you disconnect.
+      </p>
+    </div>
+
+    <div class="feature-row">
+      <h3>Crash reports are opt-in</h3>
+      <p>
+        The one exception: an off-by-default setting to send crash diagnostics if
+        something breaks. It's clearly labeled, and MotoCapture works exactly the same
+        with it left off.
+      </p>
+    </div>
+
+    <p class="fineprint"><a href="help.html#privacy">Read the full privacy statement →</a></p>
+  </div>
+</section>
+
+<section class="block" id="download">
+  <div class="wrap">
+    <h2>Download MotoCapture</h2>
+    <p class="section-lede">Free to download. No account, no sign-up, no trial clock.</p>
+
+    <div class="download-grid" id="download-grid">
+      <a class="download-card" data-os="mac" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+        <span class="os">macOS</span>
+        <span class="fmt">Apple Silicon &amp; Intel · .dmg</span>
+      </a>
+      <a class="download-card" data-os="windows" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+        <span class="os">Windows</span>
+        <span class="fmt">x64 &amp; ARM64 · installer</span>
+      </a>
+      <a class="download-card" data-os="linux" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+        <span class="os">Linux</span>
+        <span class="fmt">.AppImage</span>
+      </a>
+    </div>
+
+    <p class="fineprint">
+      All builds are on the
+      <a href="https://github.com/JaggerO/motocapture-releases/releases/latest">releases page</a>.
+      Pick the file that matches your system from there if you're not sure which one applies.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> MotoCapture. Local-first, always.</span>
+    <span>
+      <a href="help.html">Help &amp; FAQ</a> ·
+      Feedback goes through the app itself - Settings → Report a problem / send feedback.
+    </span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Highlights the download card matching the visitor's OS - doesn't
+  // change where any button links to (every card points at the same
+  // releases page), just points at the likely-right one.
+  (function highlightPlatform() {
+    var ua = navigator.userAgent;
+    var os = /Mac/.test(ua) ? 'mac' : /Win/.test(ua) ? 'windows' : /Linux/.test(ua) ? 'linux' : null;
+    if (!os) return;
+    var card = document.querySelector('.download-card[data-os="' + os + '"]');
+    if (card) card.classList.add('recommended');
+  })();
+
+  // Ambient odometer tick - a slow, occasional increment, not a fast
+  // arcade-style counter. Frozen for reduced-motion users.
+  (function tickOdometer() {
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    var digits = Array.prototype.slice.call(
+      document.querySelectorAll('#odometer [data-d]')
+    );
+
+    function increment() {
+      for (var i = digits.length - 1; i >= 0; i--) {
+        var el = digits[i];
+        var val = parseInt(el.textContent, 10);
+        var next = (val + 1) % 10;
+        el.textContent = String(next);
+        el.style.transform = 'translateY(-4px)';
+        setTimeout(function (e) { e.style.transform = 'translateY(0)'; }, 120, el);
+        if (next !== 0) break; // only carry into the next wheel on rollover
+      }
+    }
+
+    setInterval(increment, 4000);
+  })();
+</script>
+
+</body>
+</html>
