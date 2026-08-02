@@ -186,28 +186,46 @@
     <p class="section-lede">Free to download. No account, no sign-up, no trial clock.</p>
 
     <div class="download-grid" id="download-grid">
-      <a class="download-card reveal" data-os="mac" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+      <div class="download-card reveal" data-os="mac">
         <span class="os">macOS</span>
-        <span class="fmt">Apple Silicon &amp; Intel · .dmg</span>
-      </a>
-      <a class="download-card reveal" data-os="windows" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+        <span class="fmt">.dmg installer</span>
+        <a class="download-btn" data-asset="mac-arm" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+          Download for Apple Silicon
+        </a>
+        <a class="download-alt" data-asset="mac-intel" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+          Intel Mac? Get that build instead
+        </a>
+      </div>
+
+      <div class="download-card reveal" data-os="windows">
         <span class="os">Windows</span>
-        <span class="fmt">x64 &amp; ARM64 · .exe (NSIS)</span>
-      </a>
-      <a class="download-card reveal" data-os="linux" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+        <span class="fmt">.exe installer</span>
+        <a class="download-btn" data-asset="win-x64" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+          Download for Windows
+        </a>
+        <a class="download-alt" data-asset="win-arm" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+          On ARM64 Windows? Get that build instead
+        </a>
+      </div>
+
+      <div class="download-card reveal" data-os="linux">
         <span class="os">Linux</span>
         <span class="fmt">.AppImage</span>
-      </a>
+        <a class="download-btn" data-asset="linux-appimage" href="https://github.com/JaggerO/motocapture-releases/releases/latest">
+          Download AppImage
+        </a>
+      </div>
     </div>
 
+    <p class="fineprint" id="download-fallback-note" hidden>
+      Couldn't reach GitHub to look up the latest build -
+      <a href="https://github.com/JaggerO/motocapture-releases/releases/latest">see all downloads</a> instead.
+    </p>
+
     <p class="fineprint">
-      All builds are on the
-      <a href="https://github.com/JaggerO/motocapture-releases/releases/latest">releases page</a>.
-      Look for the file matching your platform above - <code class="mono">.dmg</code> for macOS,
-      <code class="mono">-setup.exe</code> for Windows, <code class="mono">.AppImage</code> for
-      Linux. You can ignore the other files listed there (<code class="mono">.sig</code>,
-      <code class="mono">.app.tar.gz</code>, <code class="mono">latest.json</code>, source code
-      archives) - those are used by the app's auto-updater, not for direct download.
+      Downloads above link straight to the file for your platform. Not sure which one you need,
+      or want to double check first?
+      <a href="https://github.com/JaggerO/motocapture-releases/releases/latest">See every file on the releases page</a>.
     </p>
   </div>
 </section>
@@ -225,9 +243,104 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Highlights the download card matching the visitor's OS - doesn't
-  // change where any button links to (every card points at the same
-  // releases page), just points at the likely-right one.
+  // Resolves each download button to a direct link for the *current*
+  // latest release. Asset filenames embed the version number
+  // (MotoCapture_0.1.7_x64.dmg) and change every release, so a
+  // hardcoded URL would go stale the moment a new version ships.
+  // Matched by stable filename suffix rather than the full name, so
+  // this keeps working across version bumps without any edits here.
+  (function wireUpDownloads() {
+    var ASSET_PATTERNS = {
+      'mac-arm': /_aarch64\.dmg$/,
+      'mac-intel': /_x64\.dmg$/,
+      'win-x64': /_x64-setup\.exe$/,
+      'win-arm': /_arm64-setup\.exe$/,
+      'linux-appimage': /_amd64\.AppImage$/
+    };
+
+    fetch('https://api.github.com/repos/JaggerO/motocapture-releases/releases/latest')
+      .then(function (res) {
+        if (!res.ok) throw new Error('GitHub API returned ' + res.status);
+        return res.json();
+      })
+      .then(function (release) {
+        var assets = release.assets || [];
+
+        Object.keys(ASSET_PATTERNS).forEach(function (key) {
+          var pattern = ASSET_PATTERNS[key];
+          var match = assets.filter(function (a) { return pattern.test(a.name); })[0];
+          if (!match) return; // leave the releases-page fallback link in place
+
+          var els = document.querySelectorAll('[data-asset="' + key + '"]');
+          for (var i = 0; i < els.length; i++) {
+            els[i].href = match.browser_download_url;
+          }
+        });
+      })
+      .catch(function () {
+        var note = document.getElementById('download-fallback-note');
+        if (note) note.hidden = false;
+      });
+  })();
+
+  // Best-effort "which button looks primary" - OS is reliable, CPU
+  // architecture mostly isn't (Safari/Firefox expose neither GPU
+  // renderer strings nor UA-CH architecture), so this only ever
+  // relabels/reclasses the two links for a given OS card. Both always
+  // link somewhere real; nothing is hidden or disabled.
+  (function detectRecommendedArch() {
+    function promoteToPrimary(altKey, btnKey, primaryLabel, altLabel) {
+      var btn = document.querySelector('[data-asset="' + btnKey + '"]');
+      var alt = document.querySelector('[data-asset="' + altKey + '"]');
+      if (!btn || !alt) return;
+
+      alt.className = 'download-alt';
+      btn.className = 'download-btn';
+      btn.textContent = primaryLabel;
+      alt.textContent = altLabel;
+    }
+
+    var ua = navigator.userAgent;
+
+    if (/Mac/.test(ua)) {
+      try {
+        var canvas = document.createElement('canvas');
+        var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        var dbg = gl && gl.getExtension('WEBGL_debug_renderer_info');
+        var renderer = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : '';
+
+        if (/Intel|AMD|Radeon/i.test(renderer)) {
+          promoteToPrimary(
+            'mac-arm', 'mac-intel',
+            'Download for Intel Mac',
+            'Apple Silicon? Get that build instead'
+          );
+        }
+        // Undetected, or an Apple GPU string - Apple Silicon stays the
+        // default primary button, which is correct either way.
+      } catch (e) {
+        // Best-effort - default markup (Apple Silicon primary) stands.
+      }
+    }
+
+    if (/Win/.test(ua) && navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+      navigator.userAgentData.getHighEntropyValues(['architecture'])
+        .then(function (info) {
+          if (info.architecture === 'arm') {
+            promoteToPrimary(
+              'win-x64', 'win-arm',
+              'Download for Windows (ARM64)',
+              'x64 Windows? Get that build instead'
+            );
+          }
+        })
+        .catch(function () {
+          // Best-effort - default markup (x64 primary) stands.
+        });
+    }
+  })();
+
+  // Highlights the whole card matching the visitor's OS.
   (function highlightPlatform() {
     var ua = navigator.userAgent;
     var os = /Mac/.test(ua) ? 'mac' : /Win/.test(ua) ? 'windows' : /Linux/.test(ua) ? 'linux' : null;
@@ -236,8 +349,7 @@
     if (card) card.classList.add('recommended');
   })();
 
-  // Ambient odometer tick - a slow, occasional increment, not a fast
-  // arcade-style counter. Frozen for reduced-motion users.
+  // Ambient odometer tick
   (function tickOdometer() {
     var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
